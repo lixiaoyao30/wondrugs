@@ -1,0 +1,105 @@
+.map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-label {
+  font-size: 0.875rem;
+  color: #333;
+}
+
+.site-popup {
+  padding: 10px;
+  max-width: 300px;
+}
+
+.site-popup h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.site-popup p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.vault-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #1976d2;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.vault-link:hover {
+  background-color: #1565c0;
+}
+
+
+.country-actions {
+  margin-top: 12px;
+  text-align: center;
+}
+
+
+
+/* 让弹出框更美观 */
+.country-popup {
+  min-width: 200px;
+  padding: 8px;
+}
+
+.country-popup h3 {
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.country-info {
+  margin-bottom: 12px;
+}
+
+.country-info p {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: white;
+}

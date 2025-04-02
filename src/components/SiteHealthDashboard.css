@@ -1,0 +1,208 @@
+.health-dashboard {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .dashboard-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .summary-item {
+    text-align: center;
+  }
+  
+  .summary-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .summary-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .site-health-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .site-health-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .site-header h3 {
+    margin: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+  }
+  
+  .site-status {
+    display: flex;
+    align-items: center;
+  }
+  
+  .health-score {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .trend-icon {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .trend-icon.up {
+    color: #4caf50;
+  }
+  
+  .trend-icon.down {
+    color: #f44336;
+  }
+  
+  .trend-icon.stable {
+    color: #2196f3;
+  }
+  
+  .health-indicator-container {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .health-indicator-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      #f5f5f5,
+      #f5f5f5 10px,
+      #e0e0e0 10px,
+      #e0e0e0 20px
+    );
+  }
+  
+  .health-indicator {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+  }
+  
+  .site-details {
+    margin-bottom: 15px;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .detail-label {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .detail-value {
+    font-weight: 500;
+  }
+  
+  .status-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    background-color: #e0e0e0;
+    font-size: 12px;
+  }
+  
+  .health-status {
+    font-weight: bold;
+  }
+  
+  .site-issues {
+    margin-bottom: 15px;
+  }
+  
+  .site-issues h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .site-issues ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+  }
+  
+  .site-issues li {
+    margin-bottom: 4px;
+  }
+  
+  .site-actions {
+    margin-top: 15px;
+    text-align: right;
+  }
+  
+  .view-details {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #2196f3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background-color 0.2s;
+  }
+  
+  .view-details:hover {
+    background-color: #1976d2;
+  }
+  
+  .loading, .empty-state, .error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .error-message {
+    color: #f44336;
+  }
+  
