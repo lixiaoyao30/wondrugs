@@ -4,21 +4,20 @@
       {
         "src": "package.json",
         "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
+        "config": { 
+          "distDir": "dist",
+          "buildCommand": "npm run build"
+        }
       }
     ],
     "routes": [
-      { 
-        "src": "/assets/(.*)", 
-        "dest": "/assets/$1" 
+      {
+        "src": "/assets/(.*)",
+        "dest": "https://6851-175-163-90-176.ngrok-free.app/api/$1"
       },
       {
-        "src": "/api/(.*)",
-        "dest": "http://your-api-domain.com/api/$1"
-      },
-      { 
-        "src": "/(.*)", 
-        "dest": "/index.html" 
+        "src": "/(.*)",
+        "dest": "/index.html"
       }
     ]
   }
