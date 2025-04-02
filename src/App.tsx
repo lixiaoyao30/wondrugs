@@ -7,6 +7,19 @@ import { useVault } from './hooks/useVault';
 import { STATUS_COLORS, COUNTRY_STATUS_COLORS } from './constants/colors';
 import type { StatusColorConfig } from './constants/colors';
 import './App.css';
+import { ErrorBoundary } from 'react-error-boundary'
+
+function ErrorFallback() {
+  return (
+    <div className="error-container">
+      <h2>应用加载出错</h2>
+      <button onClick={() => window.location.reload()}>
+        重新加载
+      </button>
+    </div>
+  );
+}
+
 
 // 定义默认的站点状态颜色配置
 const defaultStatusColors: StatusColorConfig[] = [
@@ -39,7 +52,7 @@ const App: React.FC = () => {
     handleLogout,
     selectStudy
   } = useVault();
-  
+
   // 添加视图切换状态
   const [activeView, setActiveView] = useState<'map' | 'health'>('map');
 
@@ -60,69 +73,71 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>WonderDrugs Study Map</h1>
-        <div className="view-controls">
-          <button 
-            className={`view-button ${activeView === 'map' ? 'active' : ''}`}
-            onClick={() => setActiveView('map')}
-          >
-            地图视图
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <div className="app">
+        <header className="app-header">
+          <h1>WonderDrugs Study Map</h1>
+          <div className="view-controls">
+            <button
+              className={`view-button ${activeView === 'map' ? 'active' : ''}`}
+              onClick={() => setActiveView('map')}
+            >
+              地图视图
+            </button>
+            <button
+              className={`view-button ${activeView === 'health' ? 'active' : ''}`}
+              onClick={() => setActiveView('health')}
+            >
+              健康仪表盘
+            </button>
+          </div>
+          <button onClick={handleLogout} className="logout-button">
+            退出登录
           </button>
-          <button 
-            className={`view-button ${activeView === 'health' ? 'active' : ''}`}
-            onClick={() => setActiveView('health')}
-          >
-            健康仪表盘
-          </button>
-        </div>
-        <button onClick={handleLogout} className="logout-button">
-          退出登录
-        </button>
-      </header>
-      <main className="app-main">
-        <aside className="app-sidebar">
-          <StudySelector
-            studies={studies || []}
-            selectedStudy={selectedStudy}
-            onSelect={selectStudy}
-            loading={loading}
-          />
-        </aside>
-        <section className="map-section">
-          {loading ? (
-            <div className="loading">
-              <span className="spinner"></span>
-              加载中...
-            </div>
-          ) : (
-            <>
-              {activeView === 'map' && (
-                <WorldMap 
-                  sites={sites || []}
-                  countries={countries || []}
-                  statusColors={Array.isArray(statusColors) ? statusColors : defaultStatusColors}
-                  selectedStudy={selectedStudy?.id || null}
-                />
-              )}
-              {activeView === 'health' && (
-                <SiteHealthDashboard 
-                  studyId={selectedStudy?.id || null}
-                  loading={loading}
-                />
-              )}
-            </>
-          )}
-        </section>
-      </main>
-      {error && (
-        <div className="error-message">
-          <span className="error-icon">⚠</span>
-          {typeof error === 'string' ? error : error.message}
-        </div>
-      )}
-    </div>
+        </header>
+        <main className="app-main">
+          <aside className="app-sidebar">
+            <StudySelector
+              studies={studies || []}
+              selectedStudy={selectedStudy}
+              onSelect={selectStudy}
+              loading={loading}
+            />
+          </aside>
+          <section className="map-section">
+            {loading ? (
+              <div className="loading">
+                <span className="spinner"></span>
+                加载中...
+              </div>
+            ) : (
+              <>
+                {activeView === 'map' && (
+                  <WorldMap
+                    sites={sites || []}
+                    countries={countries || []}
+                    statusColors={Array.isArray(statusColors) ? statusColors : defaultStatusColors}
+                    selectedStudy={selectedStudy?.id || null}
+                  />
+                )}
+                {activeView === 'health' && (
+                  <SiteHealthDashboard
+                    studyId={selectedStudy?.id || null}
+                    loading={loading}
+                  />
+                )}
+              </>
+            )}
+          </section>
+        </main>
+        {error && (
+          <div className="error-message">
+            <span className="error-icon">⚠</span>
+            {typeof error === 'string' ? error : error.message}
+          </div>
+        )}
+      </div>
+    </ErrorBoundary>
   );
 };
 
